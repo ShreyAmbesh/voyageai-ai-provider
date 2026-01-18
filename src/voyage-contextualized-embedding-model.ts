@@ -97,7 +97,7 @@ export class VoyageContextualizedEmbeddingModel implements EmbeddingModelV3 {
     });
 
     return {
-      embeddings: response.data[0]?.map((item) => item.embedding) || [],
+      embeddings: response.data[0]?.data.map((item) => item.embedding) || [],
       usage: response.usage
         ? { tokens: response.usage.total_tokens }
         : undefined,
@@ -110,6 +110,8 @@ export class VoyageContextualizedEmbeddingModel implements EmbeddingModelV3 {
 // minimal version of the schema, focussed on what is needed for the implementation
 // this approach limits breakages when the API changes and increases efficiency
 const voyageContextualizedTextEmbeddingResponseSchema = z.object({
-  data: z.array(z.array(z.object({ embedding: z.array(z.number()) }))),
+  data: z.array(
+    z.object({ data: z.array(z.object({ embedding: z.array(z.number()) })) }),
+  ),
   usage: z.object({ total_tokens: z.number() }).nullish(),
 });

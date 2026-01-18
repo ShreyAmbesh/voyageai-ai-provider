@@ -229,14 +229,14 @@ const { embeddings } = await embedMany<MultimodalEmbeddingInput>({
 | ------------------- | ----------------------- | ------------------- |
 | voyage-multimodal-3 | 32,000                  | 1024                |
 
-
 ### Contextualized Text Embedding
 
 ```typescript
 import { voyage } from 'voyage-ai-provider';
 import { embedMany } from 'ai';
 
-const embeddingModel = voyage.createContextualizedEmbeddingModel('voyage-context-3');
+const embeddingModel =
+  voyage.createContextualizedEmbeddingModel('voyage-context-3');
 
 export const generateEmbeddings = async (
   value: string,
