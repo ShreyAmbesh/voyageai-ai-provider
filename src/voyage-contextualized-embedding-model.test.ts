@@ -36,11 +36,15 @@ describe('doEmbed', () => {
         headers,
         body: {
           object: 'list',
-          data: embeddings.map((embedding, i) => ({
-            object: 'embedding',
-            embedding,
-            index: i,
-          })),
+          data: [
+            {
+              data: embeddings.map((embedding, i) => ({
+                object: 'embedding',
+                embedding,
+                index: i,
+              })),
+            }
+          ],
           model: 'voyage-context-3',
           normalized: true,
           encoding_format: 'float',
@@ -65,7 +69,7 @@ describe('doEmbed', () => {
     const { response } = await model.doEmbed({ values: testValues });
 
     expect(response?.headers).toStrictEqual({
-      'content-length': '275',
+      'content-length': '286',
       // default headers:
       'content-type': 'application/json',
 
@@ -80,7 +84,7 @@ describe('doEmbed', () => {
     await model.doEmbed({ values: testValues });
 
     expect(await server.calls[0]?.requestBodyJson).toStrictEqual({
-      input: testValues,
+      inputs: [testValues],
       model: 'voyage-context-3',
     });
   });
@@ -135,7 +139,7 @@ describe('doEmbed', () => {
     const requestBody = await server.calls[0]?.requestBodyJson;
 
     expect(requestBody).toStrictEqual({
-      input: testValues,
+      inputs: [testValues],
       model: 'voyage-context-3',
       input_type: 'document',
       // encoding_format: 'base64',
