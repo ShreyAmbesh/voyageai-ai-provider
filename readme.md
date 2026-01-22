@@ -236,7 +236,7 @@ import { voyage } from 'voyage-ai-provider';
 import { embedMany } from 'ai';
 
 const embeddingModel =
-  voyage.createContextualizedEmbeddingModel('voyage-context-3');
+  voyage.contextualizedEmbeddingModel('voyage-context-3');
 
 export const generateEmbeddings = async (
   value: string,
