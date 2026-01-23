@@ -52,11 +52,6 @@ export const voyageContextualizedEmbeddingOptions = z.object({
   outputDtype: z
     .enum(['float', 'int8', 'uint8', 'binary', 'ubinary'])
     .optional(),
-
-  /**
-   *  Whether to truncate the input texts to fit within the context length.
-   */
-  truncation: z.boolean().optional(),
 });
 
 export type VoyageContextualizedEmbeddingOptions = z.infer<
