@@ -83,7 +83,6 @@ export class VoyageContextualizedEmbeddingModel implements EmbeddingModelV3 {
         inputs: [values],
         model: this.modelId,
         input_type: embeddingOptions?.inputType,
-        truncation: embeddingOptions?.truncation,
         output_dimension: embeddingOptions?.outputDimension,
         output_dtype: embeddingOptions?.outputDtype,
       },
